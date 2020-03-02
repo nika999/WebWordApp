@@ -6,22 +6,33 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebWord.Models;
+using WebWord.Data;
+
 
 namespace WebWord.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _dbContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        /// <summary>
+        /// Instantiate an instance of the <see cref="HomeController"/> class.
+        /// </summary>
+        /// <param name="dbContext">The <see cref="ApplicationDbContext"/> data base context for injection.</param>
+        public HomeController(ApplicationDbContext dbContext)
         {
-            _logger = logger;
+            _dbContext = dbContext;
         }
 
         public IActionResult Index()
         {
-            return View();
+            //отримуємо з БД всі об'єкти Book
+            IEnumerable<Word> words = _dbContext.Words.ToList();
+
+            //повертаємо відображення 
+            return View(words);
         }
+
 
         public IActionResult Privacy()
         {

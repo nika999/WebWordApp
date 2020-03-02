@@ -18,5 +18,22 @@ namespace WebWord.Data
             : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<Vocabulary>()
+                .HasOne<Word>(vocabulary => vocabulary.Word)
+                .WithMany(word => word.Vocabularies)
+                .HasForeignKey(vocabulary => vocabulary.WordId);
+
+
+            // відношення "один-до-багатьох"
+            builder.Entity<Student>() // сутність, що підлягає налаштуванню
+                .HasMany<Vocabulary>(student => student.Vocabularies) // головний клас Customer містить колекцію підпорядкованих об'єктів Purchases
+            .WithOne(vocabulary => vocabulary.Student) // кожен такий підпорядкований об'єкт Purchases пов'язаний з одним головним об'єктом Customer
+            .HasForeignKey(vocabulary => vocabulary.StudentId);
+        }
     }
 }

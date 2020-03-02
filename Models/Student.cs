@@ -11,7 +11,7 @@ namespace WebWord.Models
 
         public string Person { get; set; }
         public string Email { get; set; }
-      //  public List<Vocabulary> Vocabularies { get; set; }
+      public List<Vocabulary> Vocabularies { get; set; }
 
     }
 }
