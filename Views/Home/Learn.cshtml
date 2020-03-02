@@ -1,0 +1,37 @@
+﻿@model Word
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add word to your vocabulary</title>
+</head>
+<body>
+    <div>
+        <h3>Форма додавання слова</h3>
+        <form method="post" action="">
+            <input type="hidden" value="@Model.Id" name="WordId" />
+            <input type="hidden" value="1" name="StudentId" />
+            <h3>@Model.Name</h3>
+            <table>
+                <tr>
+                    <td><p>Введіть своє ім'я</p></td>
+                    <td><input type="text" name="Person" /></td>
+                </tr>
+                <tr>
+                    <td><p>Введіть email</p></td>
+                    <td><input type="text" name="Email" /></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Підтвердити" /></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+</html>

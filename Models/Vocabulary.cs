@@ -8,7 +8,7 @@ namespace WebWord.Models
 {
     public class Vocabulary
     {
-        public int Id { get; set; }
+        public int ?Id { get; set; }
 
         public int WordId { get; set; }
         // дата покупки
