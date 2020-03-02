@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using WebWord.Controllers;
 
 namespace WebWord.Models
 {
@@ -15,8 +16,8 @@ namespace WebWord.Models
 
         public int StudentId { get; set; }
 
-        public Student Student { get; set; }
-        public Word Word { get; set; }
+      //  public Student Student { get; set; }
+      //  public Word Word { get; set; }
 
     }
 }
