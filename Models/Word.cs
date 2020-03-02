@@ -15,5 +15,6 @@ namespace WebWord.Models
         public string Translation { get; set; }
 
         public int Level { get; set; }
+        public List<Vocabulary> Vocabularies { get; set; }
     }
 }
