@@ -70,18 +70,19 @@ namespace WebWord.Controllers
         [HttpPost]
         public async Task<ActionResult> Learn(Vocabulary vocabulary)
         {
-            if (vocabulary == null)
-            {
-                return BadRequest();
-            }
-
+            /* if (vocabulary == null)
+             {
+                 return BadRequest();
+             }
+             */
+            
             var student = await _dbContext.Students
                 .FirstOrDefaultAsync(c => c.Id == vocabulary.StudentId);
-
+            /*
             if (student == null)
             {
                 return BadRequest();
-            }
+            }*/
 
             vocabulary.Student = student;
             vocabulary.Date = DateTime.Now;
@@ -95,6 +96,17 @@ namespace WebWord.Controllers
 
 
             return View($"You, {student.Person}, added!");
+        }
+
+        public async Task<IActionResult> List()
+        {
+            var vocabularies = await _dbContext  // Контекст даних
+                .Vocabularies // підпорядковані дані 
+                .Include(v => v.Word) // пов'язані (через навігаційну властивість) дані з головної таблиці
+                .Include(v => v.Student) // пов'язані (через навігаційну властивість) дані з головної таблиці
+                .ToListAsync(); // отримання колекції даних
+
+            return View(vocabularies);
         }
 
         public IActionResult Privacy()
